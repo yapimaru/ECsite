@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "homes/top" => "homes#top"
+    resource :admins
+    get "customers/index"
   end
   # 顧客用
   # /customers/sign_in ...
@@ -20,5 +22,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   scope module: :public do
     resource :customers
+    get "customers/confirmation"
+    patch "customers/withdraw"
   end
 end
