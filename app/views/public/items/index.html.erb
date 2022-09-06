@@ -1,0 +1,9 @@
+ <h1>商品一覧</h1>
+ 
+ <% @items.each do |item| %>
+    <tr>
+      <td><%= image_tag item.get_item_image(100,100) %></td>
+      <td><a><%= item.name %></a></td>
+      <td><%= item.price %></td>
+    </tr>
+<% end %>

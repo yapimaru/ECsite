@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get "homes/top" => "homes#top"
     resource :admins
     get "customers/index"
+    get "genres/index" 
   end
   # 顧客用
   # /customers/sign_in ...
@@ -24,5 +25,6 @@ Rails.application.routes.draw do
     resource :customers
     get "customers/confirmation"
     patch "customers/withdraw"
+    get "items/index"
   end
 end
