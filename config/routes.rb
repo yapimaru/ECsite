@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get "homes/top" => "homes#top"
     resource :admins
-    get "customers/index"
-    get "genres/index" 
+    get "customers" => "admins/customers#index"
+    resource :genres
+    get "genres/index"
   end
   # 顧客用
   # /customers/sign_in ...
