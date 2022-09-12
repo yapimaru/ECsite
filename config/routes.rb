@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     get "homes/top" => "homes#top"
     resource :admins
     get "customers" => "admins/customers#index"
-    resource :genres
-    get "genres/index"
+    resources :genres
+    resources :items
   end
   # 顧客用
   # /customers/sign_in ...
