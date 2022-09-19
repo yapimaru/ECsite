@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     resource :customers
     get "customers/confirmation"
     patch "customers/withdraw"
-    get "items/index"
+    resources :items
+    resources :cart_items
+    delete "cart_items/destroy"
   end
 end

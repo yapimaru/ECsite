@@ -1,0 +1,12 @@
+<div>
+  <%= image_tag @item.get_item_image(100,100) %>
+  <h1><%= @item.name %></h1>
+  <h2><%= @item.introduction %></h2>
+  <div><%= @item.price %></div>
+  <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+   <%= f.hidden_field :item_id, :value => @item.id %>
+   <%= f.hidden_field :customer_id, :value => current_customer.id %>
+   <%= f.select :amount, *[1..10] , { include_blank: "個数選択" }%>
+   <%= f.submit "カートに入れる" %>
+  <% end %>
+</div>
