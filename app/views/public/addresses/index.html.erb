@@ -1,0 +1,37 @@
+<h1>配送先登録・一覧</h1>
+<%= form_with model: @address do |f| %>
+　<table>
+　  <tr>
+　    <td><label>郵便番号(ハイフンなし)</label></td>
+　    <td><%= f.file_field :postal_code %>  </td>
+　  </tr>
+　  <tr>
+　    <td><label>住所</label></td>
+　    <td><%= f.text_field :address %></td>
+　  </tr>
+　  <tr>
+　    <td><label>宛名</label></td>
+　    <td><%= f.text_field :name %></td>
+　  </tr>
+　  <td><%= f.submit "新規登録" %></td>
+　</table>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @addresses.each do |address| %>
+  <tbody>
+    <tr>
+      <td><%= address.postal_code %></td>
+      <td><%= address.address %></td>
+      <td><%= address.name %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
