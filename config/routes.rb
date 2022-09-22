@@ -29,6 +29,6 @@ Rails.application.routes.draw do
     resources :items
     resources :cart_items
     delete "cart_items/destroy"
-    resources :address
+    resources :addresses
   end
 end
