@@ -30,5 +30,8 @@ Rails.application.routes.draw do
     resources :cart_items
     delete "cart_items/destroy"
     resources :addresses
+    resources :orders
+    post "orders/confirmation"
+    get "orders/complete"
   end
 end
