@@ -1,0 +1,25 @@
+<h1>注文商品一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>購入日時</th>
+      <th>購入者</th>
+      <th>注文回数</th>
+      <th>注文ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @orders.each do |order| %>
+    <tr>
+      <td>
+        <%= link_to admin_order_detail_path(order.id) do %>
+          <%= order.create_at %>
+        <% end %>
+      </td>
+      <td><%= order.name %></td>
+      <td><%= order.order_details.amount %></td>
+      <td><%= order.status %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
