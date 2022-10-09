@@ -5,16 +5,21 @@
 </div>
 <div>
   <h3>注文日</h3>
-  <%= @order.create_at %>
+  <%= @order.created_at %>
 </div>
 <div>
   <h3>配送先</h3>
   〒<%= @order.postal_code %><%= @order.address %></br>
-  <%= @order.addresses.name %>
+  <%= @order.name %>
 </div>
 <div>
   <h3>注文ステータス</h3>
-  <%= @order.status %>
+  <%= form_with model: @order, url: admin_order_path do |f| %>
+    <td>
+      <%= f.select :status, Order.statuses_i18n.invert %>
+      <%= f.submit '更新' %>
+    </td>
+  <% end %>
 </div>
 
 <table>
@@ -26,13 +31,21 @@
     <th>制作ステータス</th>
   </thead>
   <tbody>
-    <%= @order_details.each do |order_detail| %>
+    <% @order_details.each do |order_detail| %>
       <td><%= order_detail.item.name %></td>
       <td><%= order_detail.item.with_tax_price %></td>
       <td><%= order_detail.amount %></td>
-      <td><%= order_detail.cart_item.subtotal %></td>
-      <td><%= order_detail.making_status %></td>
-      <% @total +=  order_detail.cart_item.subtotal %>
+      <td><%= order_detail.subtotal %></td>
+      <td>
+        <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id) do |f| %>
+          <td>
+            <%= f.hidden_field :order_id, :value => order_detail.order_id %>
+            <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
+            <%= f.submit '更新' %>
+          </td>
+        <% end %>
+      </td>
+      <% @total +=  order_detail.subtotal %>
     <% end %>
   </tbody>
 </table>

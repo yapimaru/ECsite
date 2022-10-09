@@ -9,16 +9,16 @@
     </tr>
   </thead>
   <tbody>
-    <%= @orders.each do |order| %>
+    <% @orders.each do |order| %>
     <tr>
       <td>
-        <%= link_to admin_order_detail_path(order.id) do %>
-          <%= order.create_at %>
+        <%= link_to admin_order_path(order.id) do %>
+          <%= order.created_at %>
         <% end %>
       </td>
       <td><%= order.name %></td>
-      <td><%= order.order_details.amount %></td>
-      <td><%= order.status %></td>
+      <td><%= order.order_details.count(:amount) %></td>
+      <td><%= order.status_i18n %></td>
     </tr>
     <% end %>
   </tbody>
