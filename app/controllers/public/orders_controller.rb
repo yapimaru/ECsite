@@ -20,12 +20,18 @@ class Public::OrdersController < ApplicationController
       @order.address = @address.address
       @order.name = @address.name
     elsif params[:order][:address_option] == "2"
-      @address = Address.new(address_params)
+      @address = current_customer.addresses.new
       @address.customer_id = current_customer.id
-      @address.save
-      @order.postal_code = params[:order][:postal_code]
-      @order.address = params[:order][:address]
-      @order.name = params[:order][:name]
+      @address.postal_code = params[:order][:postal_code]
+      @address.address = params[:order][:address]
+      @address.name = params[:order][:name]
+      if @address.save
+        @order.postal_code = params[:order][:postal_code]
+        @order.address = params[:order][:address]
+        @order.name = params[:order][:name]
+      else
+        render :new
+      end
     end
   end
 
