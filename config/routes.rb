@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "homes/top" => "homes#top"
     resource :admins
-    get "customers" => "admins/customers#index"
+    resources :customers
     resources :genres
     resources :items
     resources :orders

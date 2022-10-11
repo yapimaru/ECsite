@@ -1,3 +1,4 @@
+
 <h1>商品一覧</h1>
 <%= link_to "追加" , new_admin_item_path %>
 <table>
@@ -18,10 +19,10 @@
       <td><%= item.name %></td>
       <td><%= item.price %></td>
       <td><%= item.genre.name %></td>
-      <% if item.is_active == FALSE %>
-        <td>販売中</td>
-      <% else %>
+      <% if item.is_active %>
         <td>販売停止中</td>
+      <% else %>
+        <td>販売中</td>
       <% end %>
     </tr>
   </tbody>
